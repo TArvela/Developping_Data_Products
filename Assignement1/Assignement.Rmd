@@ -1,0 +1,25 @@
+```{r, echo=FALSE}
+invisible(Sys.setlocale("LC_TIME", "C"))
+library(leaflet)
+```
+# 26 November 2017
+
+##Some Seismic Events (click for more information)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE, message=FALSE}
+
+## Some Earthquakes seen in emsc-csem.org (26/11/2017)
+earthquakes <- data.frame(
+  lat =c(20.27,37.14,37.14,23.59),
+  lng =c(172.62,28.61,28.59,120.73),
+  mag =c(5.8,5.1,5.0,5.1),
+  location =c("Vanuatu Region","Western Turkey","Western Turkey", "Taiwan")
+)
+earthquakes %>%leaflet() %>%
+  addTiles() %>%
+  addCircles(weight = 1, radius = ((earthquakes$mag)^4)*1000, popup = earthquakes$location)
+
+```
